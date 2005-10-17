@@ -1,3 +1,8 @@
+Mon Oct 17 21:18:50 2005  Nobuyoshi Nakada  <nobu@ruby-lang.org>
+
+	* parse.y (parser_heap): byacc never free parser stack.
+	  fixed: [ruby-dev:27428]
+
 Sat Oct  8 18:56:37 2005  Nobuyoshi Nakada  <nobu@ruby-lang.org>
 
 	* parse.y (rb_parser_malloc, rb_parser_free): manage parser stack on
