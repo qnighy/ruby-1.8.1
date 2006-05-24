@@ -1,3 +1,7 @@
+Thu May 25 01:52:07 2006  nobuyoshi nakada  <nobu@ruby-lang.org>
+
+	* mkconfig.rb: merge multiple entries to an entry with multiple lines.
+
 Wed Nov 30 23:52:17 2005  Nobuyoshi Nakada  <nobu@ruby-lang.org>
 
 	* parse.y (NEWHEAP, ADD2HEAP): set count after pointer was set.
