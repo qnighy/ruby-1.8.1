@@ -690,7 +690,7 @@ rb_file_lstat(obj)
 }
 
 static int
-group_member(gid)
+rb_group_member(gid)
     GETGROUPS_T gid;
 {
 #ifndef _WIN32
@@ -751,7 +751,7 @@ eaccess(path, mode)
 
     if (st.st_uid == euid)        /* owner */
 	mode <<= 6;
-    else if (getegid() == st.st_gid || group_member(st.st_gid))
+    else if (getegid() == st.st_gid || rb_group_member(st.st_gid))
 	mode <<= 3;
 
     if ((st.st_mode & mode) == mode) return 0;
@@ -3491,7 +3491,7 @@ rb_stat_R(obj)
 	return st->st_mode & S_IRUSR ? Qtrue : Qfalse;
 #endif
 #ifdef S_IRGRP
-    if (group_member(get_stat(obj)->st_gid))
+    if (rb_group_member(get_stat(obj)->st_gid))
 	return st->st_mode & S_IRGRP ? Qtrue : Qfalse;
 #endif
 #ifdef S_IROTH
@@ -3553,7 +3553,7 @@ rb_stat_W(obj)
 	return st->st_mode & S_IWUSR ? Qtrue : Qfalse;
 #endif
 #ifdef S_IWGRP
-    if (group_member(get_stat(obj)->st_gid))
+    if (rb_group_member(get_stat(obj)->st_gid))
 	return st->st_mode & S_IWGRP ? Qtrue : Qfalse;
 #endif
 #ifdef S_IWOTH
@@ -3615,7 +3615,7 @@ rb_stat_X(obj)
 	return st->st_mode & S_IXUSR ? Qtrue : Qfalse;
 #endif
 #ifdef S_IXGRP
-    if (group_member(get_stat(obj)->st_gid))
+    if (rb_group_member(get_stat(obj)->st_gid))
 	return st->st_mode & S_IXGRP ? Qtrue : Qfalse;
 #endif
 #ifdef S_IXOTH
