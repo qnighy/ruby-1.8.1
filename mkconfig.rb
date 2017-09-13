@@ -53,7 +53,7 @@ File.foreach "config.status" do |line|
     end
     has_version = true if name == "MAJOR"
   elsif /^(?:ac_given_)?srcdir=(.*)/ =~ line
-    srcdir = $1.strip
+    srcdir = `echo $1`.strip
   elsif /^ac_given_INSTALL=(.*)/ =~ line
     v_fast << "  CONFIG[\"INSTALL\"] = " + $1 + "\n"
   end
